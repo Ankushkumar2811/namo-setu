@@ -37,6 +37,7 @@
       <button data-route="journeys">Journeys</button>
       <button data-route="darshan">Live Darshan</button>
       <button data-route="stays">Stays</button>
+      <button data-route="presentation">Project Deck</button>
     </nav>
     <div class="header-actions">
       <button class="install-btn" id="installBtn" hidden>Install app</button>
@@ -182,6 +183,71 @@
     <section class="page inner-page shell" id="journeys"><div class="empty-state"><span>ॐ</span><h1>Your sacred journeys</h1><p>Plans, bookings and saved places come together here.</p><button class="primary-btn" data-route="planner">Plan your first yatra →</button></div></section>
     <section class="page inner-page shell" id="profile"><div class="profile-card"><div class="profile-avatar">AS</div><h1>Namaste, Arjun</h1><p>Member since 2026 · Bengaluru</p><div class="profile-stats"><div><b>3</b><small>Journeys</small></div><div><b>7</b><small>Saved places</small></div><div><b>2</b><small>Family members</small></div></div><div class="accessibility-settings"><h3>Accessibility</h3><label><span>Large text<small>Increase text across the app</small></span><input type="checkbox" id="largeText"></label><label><span>High contrast<small>Stronger borders and colour contrast</small></span><input type="checkbox" id="highContrast"></label><label><span>Follow device theme<small>Automatically match your system</small></span><input type="checkbox" id="autoTheme"></label></div><button class="outline-btn">Manage profile</button></div></section>
     <section class="page inner-page shell" id="safety"><div class="page-head"><span class="kicker">NAMO CARE</span><h1>Support that travels with you.</h1></div><div class="safety-features"><article><span>⌖</span><h3>Family tracking</h3><p>Share live location privately with people you trust.</p></article><article><span>✚</span><h3>Emergency help</h3><p>Reach local assistance and emergency services quickly.</p></article><article><span>✓</span><h3>Verified partners</h3><p>Every listed guide, stay and service is identity checked.</p></article></div><button class="sos-btn" id="sosBtn">SOS · Get help now</button></section>
+    <section class="page presentation-page" id="presentation">
+      <div class="deck-hero">
+        <div class="shell">
+          <span class="kicker light">NAMO SETU · PRODUCT & TECHNOLOGY PRESENTATION</span>
+          <h1>One trusted bridge for every sacred journey.</h1>
+          <p>From a pilgrim’s first search to a verified plan, booking, darshan, donation, family safety and partner fulfillment—this page explains what was built, how it works and where it goes next.</p>
+          <div class="deck-actions"><a class="cream-btn" href="https://github.com/Ankushkumar2811/namo-setu/tree/main/docs" target="_blank" rel="noreferrer">Open complete documentation ↗</a><button class="outline-light" data-route="admin">View admin OS</button></div>
+        </div>
+      </div>
+      <div class="shell deck-body">
+        <section class="deck-section">
+          <span class="kicker">THE PROBLEM</span><h2>A pilgrimage is not a normal holiday.</h2>
+          <div class="deck-grid three"><article><b>Fragmented planning</b><p>Temple timings, stays, transport, rituals and local advice live across unrelated sources.</p></article><article><b>Weak trust</b><p>Availability, partner identity, payments and donation evidence are difficult to verify.</p></article><article><b>Family complexity</b><p>Elders, children, accessibility, crowds, language and emergencies must be coordinated together.</p></article></div>
+        </section>
+        <section class="deck-section solution-band">
+          <span class="kicker light">THE SOLUTION</span><h2>NAMO SETU turns intent into a safe, executable journey.</h2>
+          <div class="journey-flow" aria-label="Complete pilgrim journey">
+            <div><i>01</i><b>Discover</b><small>Verified temples</small></div><span>→</span><div><i>02</i><b>Plan</b><small>Grounded AI yatra</small></div><span>→</span><div><i>03</i><b>Book</b><small>Stay & services</small></div><span>→</span><div><i>04</i><b>Pay</b><small>Secure confirmation</small></div><span>→</span><div><i>05</i><b>Travel</b><small>QR, alerts & family</small></div><span>→</span><div><i>06</i><b>Complete</b><small>Review & rewards</small></div>
+          </div>
+        </section>
+        <section class="deck-section">
+          <span class="kicker">PROJECT EVOLUTION</span><h2>What happened from Part 1 to Part 10</h2>
+          <div class="project-timeline">
+            <article><i>1</i><div><b>Product foundation</b><p>Vision, users, feature scope, business rules and acceptance criteria.</p></div></article>
+            <article><i>2</i><div><b>UI/UX system</b><p>Accessible design language, responsive journeys and interaction patterns.</p></div></article>
+            <article><i>3</i><div><b>Frontend product</b><p>Discovery, planner, stays, darshan, profile, safety and responsive PWA.</p></div></article>
+            <article><i>4</i><div><b>Backend & commerce</b><p>FastAPI structure, identity, bookings, payments, data and API boundaries.</p></div></article>
+            <article><i>5</i><div><b>Agentic AI</b><p>Planner orchestration, specialist agents, RAG, memory and safety controls.</p></div></article>
+            <article><i>6</i><div><b>Enterprise ecosystem</b><p>Super admin, ERP, CRM, temple and partner operating workflows.</p></div></article>
+            <article><i>7</i><div><b>Production platform</b><p>Cloud, containers, security, CI/CD, observability and recovery.</p></div></article>
+            <article><i>8</i><div><b>System specification</b><p>Database dictionary, API/OpenAPI, events, seed and developer guide.</p></div></article>
+            <article><i>9</i><div><b>End-to-end workflows</b><p>User, admin, partner, AI, payment, SOS, DFD and sequence diagrams.</p></div></article>
+            <article><i>10</i><div><b>Launch & presentation</b><p>CTO narrative, 112 interview Q&As, roadmap, pitch and launch controls.</p></div></article>
+          </div>
+        </section>
+        <section class="deck-section architecture-deck">
+          <div><span class="kicker light">SYSTEM FLOW</span><h2>How one request moves through the platform</h2><p>The edge authenticates and protects the request. Domain services enforce rules. PostgreSQL commits authoritative state with an outbox event. Workers update projections and call approved providers.</p></div>
+          <div class="system-flow"><b>User & partner channels</b><span>↓</span><b>CDN · WAF · API gateway</b><span>↓</span><b>Identity · Catalogue · Commerce · Experience</b><span>↓</span><b>PostgreSQL + transactional outbox</b><span>↓</span><b>Queues · AI · notifications · providers</b></div>
+        </section>
+        <section class="deck-section">
+          <span class="kicker">CRITICAL FLOWS</span><h2>Deterministic where trust matters. Intelligent where guidance helps.</h2>
+          <div class="deck-grid">
+            <article><b>Booking & payment</b><p>Search → availability lock → immutable quote → hosted payment → signed webhook → atomic booking and ledger → QR, invoice and notification.</p></article>
+            <article><b>AI yatra planner</b><p>Intent → verified retrieval → temple, stay, transport, budget, weather and crowd agents → grounded itinerary → explicit user action.</p></article>
+            <article><b>Donation</b><p>Approved temple and purpose → donor/tax choice → gateway verification → double-entry ledger → immutable receipt and reporting.</p></article>
+            <article><b>Emergency SOS</b><p>Immediate official call guidance → consented GPS → hospital/responders/family → acknowledgements → visible tracking → human closure.</p></article>
+          </div>
+        </section>
+        <section class="deck-section">
+          <span class="kicker">15-MINUTE DEMO</span><h2>Recommended presentation order</h2>
+          <div class="demo-run"><span>01 · Problem</span><span>02 · Login</span><span>03 · Temple search</span><span>04 · AI planner</span><span>05 · Booking</span><span>06 · Payment & QR</span><span>07 · Donation</span><span>08 · Family & SOS</span><span>09 · Admin</span><span>10 · Roadmap</span></div>
+        </section>
+        <section class="deck-section">
+          <span class="kicker">DOCUMENT LIBRARY</span><h2>Open the complete detailed manuals</h2>
+          <div class="doc-links">
+            <a href="https://github.com/Ankushkumar2811/namo-setu/blob/main/docs/PART_10_EXECUTIVE_AND_PRESENTATION.md" target="_blank" rel="noreferrer"><b>CTO presentation</b><small>Story, demo and technical narrative ↗</small></a>
+            <a href="https://github.com/Ankushkumar2811/namo-setu/blob/main/docs/PART_9_WORKFLOW_MANUAL.md" target="_blank" rel="noreferrer"><b>Complete workflow</b><small>User, admin and partner journeys ↗</small></a>
+            <a href="https://github.com/Ankushkumar2811/namo-setu/blob/main/docs/PART_9_SYSTEM_FLOWS.md" target="_blank" rel="noreferrer"><b>System diagrams</b><small>DFD, architecture and sequences ↗</small></a>
+            <a href="https://github.com/Ankushkumar2811/namo-setu/blob/main/docs/PART_10_INTERVIEW_GUIDE.md" target="_blank" rel="noreferrer"><b>Interview guide</b><small>112 technical questions with answers ↗</small></a>
+            <a href="https://github.com/Ankushkumar2811/namo-setu/blob/main/docs/PART_10_ROADMAP_INVESTOR.md" target="_blank" rel="noreferrer"><b>Investor & roadmap</b><small>Business model, GTM and V1–V6 ↗</small></a>
+            <a href="https://github.com/Ankushkumar2811/namo-setu/blob/main/docs/PART_10_LAUNCH_COMPLIANCE_RISK.md" target="_blank" rel="noreferrer"><b>Launch manual</b><small>Risk, compliance and go-live gates ↗</small></a>
+          </div>
+        </section>
+      </div>
+    </section>
     <section class="page admin-page" id="admin">
       <aside class="admin-sidebar">
         <a href="#" class="brand" data-route="admin"><span class="brand-mark">न</span><span><b>NAMO SETU</b><small>Enterprise OS</small></span></a>
