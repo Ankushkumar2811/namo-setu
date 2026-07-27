@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffaf2">
+  <meta name="description" content="NAMO SETU — India's intelligent pilgrimage companion. Discover temples, plan journeys, book stays and travel with confidence.">
+  <title>NAMO SETU — Your journey. Divinely connected.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="offline-bar" id="offlineBar">You’re offline — saved journeys are still available.</div>
+
+  <header class="topbar">
+    <a href="#" class="brand" data-route="home" aria-label="NAMO SETU home">
+      <span class="brand-mark" aria-hidden="true">न</span>
+      <span><b>NAMO SETU</b><small>Sacred journeys, simply made</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <button data-route="discover">Discover</button>
+      <button data-route="journeys">Journeys</button>
+      <button data-route="darshan">Live Darshan</button>
+      <button data-route="stays">Stays</button>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">☼</button>
+      <button class="language-btn" id="languageBtn">EN <span>⌄</span></button>
+      <button class="profile-btn" data-route="profile"><span>AS</span><i>Arjun</i></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page active" id="home">
+      <div class="hero">
+        <img src="public/images/namo-setu-hero.png" alt="Temple ghats beside a sacred river at sunrise">
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <div class="eyebrow"><span></span> INDIA’S PILGRIMAGE COMPANION</div>
+          <h1>Your journey.<br><em>Divinely connected.</em></h1>
+          <p>From the first prayer to the journey home — discover, plan and experience every pilgrimage with confidence.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" data-route="discover">Explore sacred places <span>→</span></button>
+            <button class="glass-btn" data-route="planner"><span>✦</span> Plan with Namo AI</button>
+          </div>
+          <form class="ai-search" id="aiSearch"><span>✦</span><input aria-label="Ask Namo to plan a journey" placeholder="Try “5 days in Kedarnath under ₹30,000”"><button type="submit">Ask Namo →</button></form>
+          <div class="trust-row">
+            <div class="avatars"><span>AR</span><span>SK</span><span>MG</span></div>
+            <div><b>Trusted by 12,000+ pilgrims</b><small>across 24 sacred destinations</small></div>
+          </div>
+        </div>
+        <button class="voice-fab" id="voiceBtn" aria-label="Ask Namo voice assistant">
+          <span class="voice-rings"></span><b>⌁</b><i>Ask Namo</i>
+        </button>
+      </div>
+
+      <section class="quick-section shell">
+        <div class="section-heading">
+          <div><span class="kicker">BEGIN YOUR JOURNEY</span><h2>What can we help you with?</h2></div>
+          <button class="text-btn" data-route="discover">View all services →</button>
+        </div>
+        <div class="quick-grid">
+          <button class="quick-card" data-route="discover"><span class="quick-icon coral">⌖</span><b>Explore temples</b><small>Discover sacred places</small><i>→</i></button>
+          <button class="quick-card" data-route="planner"><span class="quick-icon gold">✦</span><b>Plan my yatra</b><small>AI-powered itinerary</small><i>→</i></button>
+          <button class="quick-card" data-route="stays"><span class="quick-icon green">⌂</span><b>Find a stay</b><small>Hotels & dharamshalas</small><i>→</i></button>
+          <button class="quick-card" data-route="darshan"><span class="quick-icon blue">◉</span><b>Live darshan</b><small>Watch from anywhere</small><i>→</i></button>
+        </div>
+      </section>
+
+      <section class="live-strip shell" aria-label="Live pilgrimage updates">
+        <div><span class="status-icon success">●</span><p><small>LIVE CROWD</small><b>Kashi Vishwanath</b></p><strong>Moderate · 28 min</strong></div>
+        <div><span class="status-icon weather">☀</span><p><small>WEATHER</small><b>Varanasi</b></p><strong>29°C · Clear</strong></div>
+        <div><span class="status-icon road">↗</span><p><small>ROAD STATUS</small><b>Kedarnath route</b></p><strong>Open · Drive safe</strong></div>
+      </section>
+
+      <section class="destinations shell">
+        <div class="section-heading">
+          <div><span class="kicker">SACRED INDIA</span><h2>Journeys that call to the soul</h2><p>Curated pilgrimage experiences, thoughtfully planned for every kind of traveller.</p></div>
+          <div class="carousel-controls"><button id="prevDest">←</button><button id="nextDest">→</button></div>
+        </div>
+        <div class="destination-track" id="destinationTrack">
+          <article class="destination-card" data-place="Varanasi"><div class="place-art varanasi"><span>UTTAR PRADESH</span></div><div><h3>Kashi Vishwanath</h3><p>Where eternity meets the Ganga</p><footer><span>2–3 days</span><b>Explore →</b></footer></div></article>
+          <article class="destination-card" data-place="Kedarnath"><div class="place-art kedarnath"><span>UTTARAKHAND</span></div><div><h3>Kedarnath Dham</h3><p>A sacred ascent to stillness</p><footer><span>4–6 days</span><b>Explore →</b></footer></div></article>
+          <article class="destination-card" data-place="Ujjain"><div class="place-art ujjain"><span>MADHYA PRADESH</span></div><div><h3>Mahakaleshwar</h3><p>Feel the pulse of timeless devotion</p><footer><span>2–3 days</span><b>Explore →</b></footer></div></article>
+          <article class="destination-card" data-place="Puri"><div class="place-art puri"><span>ODISHA</span></div><div><h3>Jagannath Puri</h3><p>Where faith moves like the sea</p><footer><span>3–4 days</span><b>Explore →</b></footer></div></article>
+        </div>
+      </section>
+
+      <section class="ai-banner shell">
+        <div class="ai-orb">✦</div>
+        <div><span class="kicker light">NAMO AI</span><h2>A pilgrimage plan, shaped around you</h2><p>Tell us who’s travelling, what matters and how you like to journey. Namo creates a thoughtful plan in seconds.</p></div>
+        <button class="cream-btn" data-route="planner">Start planning <span>→</span></button>
+      </section>
+
+      <section class="festival-section shell">
+        <div class="festival-card"><div><span class="kicker light">FESTIVAL SPOTLIGHT · 6 DAYS TO GO</span><h2>Experience Dev Deepawali in Kashi</h2><p>A million lamps, timeless chants and a river transformed by light. Explore verified stays, aarti passes and senior-friendly routes.</p><button class="cream-btn" data-route="planner">Plan for the festival →</button></div><div class="diya-scene" aria-hidden="true"><span>ॐ</span><i></i><i></i><i></i><i></i><i></i></div></div>
+      </section>
+
+      <section class="services-section shell">
+        <div class="section-heading"><div><span class="kicker">EVERYTHING IN ONE PLACE</span><h2>From arrival to aarti.</h2></div></div>
+        <div class="service-pills"><button data-route="stays"><span>⌂</span> Hotels</button><button data-route="stays"><span>♜</span> Dharamshalas</button><button><span>⌁</span> Cabs</button><button><span>▰</span> Trains</button><button><span>♙</span> Local guides</button><button><span>♨</span> Puja booking</button><button><span>♡</span> Donations</button><button data-route="darshan"><span>◉</span> Aarti today</button></div>
+      </section>
+
+      <section class="safety shell">
+        <div class="safety-copy"><span class="kicker">TRAVEL WITH CONFIDENCE</span><h2>Someone’s always looking out for you.</h2><p>From family location sharing to verified help on the ground, NAMO SETU keeps care close throughout your yatra.</p><button class="outline-btn" data-route="safety">Explore safety features →</button></div>
+        <div class="safety-card">
+          <div class="map-dots"><span class="path"></span><i class="pin p1">A</i><i class="pin p2">S</i><i class="pin p3">M</i></div>
+          <div class="family-status"><span class="pulse"></span><div><b>Family is together</b><small>Last updated just now</small></div><span class="safe-pill">All safe</span></div>
+        </div>
+      </section>
+      <section class="faq shell"><div><span class="kicker">NEED TO KNOW</span><h2>Questions, answered with care.</h2><p>Clear guidance before you begin your journey.</p></div><div class="accordion"><details><summary>How does NAMO SETU verify stays and guides?<span>＋</span></summary><p>Identity, licence and service checks are completed before a partner is listed. Devotee reviews are continuously monitored.</p></details><details><summary>Can I plan for senior citizens?<span>＋</span></summary><p>Yes. Select Senior-friendly for accessible stays, shorter walking routes, rest breaks and medical guidance.</p></details><details><summary>Will my journey work offline?<span>＋</span></summary><p>Saved itineraries, passes, emergency details and essential maps remain available when connectivity is limited.</p></details></div></section>
+    </section>
+
+    <section class="page inner-page shell" id="discover">
+      <div class="page-head"><span class="kicker">DISCOVER SACRED INDIA</span><h1>Find a place that speaks to you.</h1><p>Explore temples, traditions and journeys across India.</p></div>
+      <div class="search-panel"><span>⌕</span><input id="templeSearch" placeholder="Search temple, city or deity…" aria-label="Search temples"><button>Search</button></div>
+      <div class="filter-row"><button class="active">All places</button><button>Jyotirlinga</button><button>Shakti Peetha</button><button>Char Dham</button><button>South India</button></div>
+      <div class="temple-grid" id="templeGrid">
+        <article data-name="Kashi Vishwanath Varanasi Shiva"><div class="place-art varanasi"></div><span>JYOTIRLINGA</span><h3>Kashi Vishwanath</h3><p>Varanasi, Uttar Pradesh</p><button data-route="temple">View temple →</button></article>
+        <article data-name="Kedarnath Uttarakhand Shiva"><div class="place-art kedarnath"></div><span>CHAR DHAM</span><h3>Kedarnath Dham</h3><p>Rudraprayag, Uttarakhand</p><button data-route="planner">Plan this journey →</button></article>
+        <article data-name="Mahakaleshwar Ujjain Shiva"><div class="place-art ujjain"></div><span>JYOTIRLINGA</span><h3>Mahakaleshwar</h3><p>Ujjain, Madhya Pradesh</p><button data-route="planner">Plan this journey →</button></article>
+        <article data-name="Jagannath Puri Odisha Vishnu"><div class="place-art puri"></div><span>CHAR DHAM</span><h3>Jagannath Temple</h3><p>Puri, Odisha</p><button data-route="planner">Plan this journey →</button></article>
+      </div>
+    </section>
+
+    <section class="page inner-page shell" id="temple">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><button data-route="discover">Discover</button><span>›</span><span>Kashi Vishwanath</span></nav>
+      <div class="temple-hero"><div><span class="verified">✓ OFFICIALLY VERIFIED</span><h1>Shri Kashi Vishwanath</h1><p>Varanasi, Uttar Pradesh · Jyotirlinga</p><div class="temple-actions"><button class="primary-btn" data-route="planner">Plan this journey</button><button class="glass-btn">♡ Save</button></div></div></div>
+      <div class="temple-layout"><div><div class="info-tabs"><button class="active">Overview</button><button>Timings</button><button>Facilities</button><button>Rules</button><button>Reviews</button></div><section class="temple-copy"><span class="kicker">ABOUT THE TEMPLE</span><h2>A city of light, a shrine beyond time.</h2><p>One of the twelve revered Jyotirlingas, Kashi Vishwanath stands at the spiritual heart of Varanasi. This guide brings together respectful cultural context with practical, verified information.</p></section><div class="detail-grid"><article><span>◷</span><div><small>OPEN TODAY</small><b>3:00 AM – 11:00 PM</b><p>Mangala Aarti: 3:00 AM</p></div></article><article><span>♟</span><div><small>DRESS CODE</small><b>Modest traditional wear</b><p>Footwear deposit available</p></div></article><article><span>♿</span><div><small>ACCESSIBILITY</small><b>Assisted access</b><p>Wheelchairs at Gate 4</p></div></article><article><span>₹</span><div><small>ENTRY</small><b>Free darshan</b><p>Optional sugam passes</p></div></article></div><section class="facilities"><h2>Facilities</h2><div><span>✓ Drinking water</span><span>✓ Lockers</span><span>✓ Medical desk</span><span>✓ Wheelchairs</span><span>✓ Prasad counter</span><span>✓ Cloakroom</span></div></section></div><aside class="live-card"><div class="live-card-head"><span class="pulse"></span><div><small>LIVE NOW</small><b>Temple conditions</b></div></div><div class="metric"><span>Crowd level</span><b class="amber">Moderate</b></div><div class="crowd-meter"><i></i></div><div class="metric"><span>Estimated queue</span><b>28 minutes</b></div><div class="metric"><span>Weather</span><b>29°C · Clear</b></div><div class="metric"><span>Last verified</span><b>2 min ago</b></div><button class="primary-btn full" data-route="darshan">Watch live darshan</button><button class="outline-btn full">Book puja or aarti</button></aside></div>
+    </section>
+
+    <section class="page inner-page shell" id="planner">
+      <div class="planner-layout">
+        <div class="page-head"><span class="kicker">PLAN WITH NAMO AI</span><h1>A yatra made for <em>your family.</em></h1><p>Share a few details. We’ll build a comfortable, practical itinerary around your needs.</p>
+          <form id="plannerForm">
+            <label>Where do you want to go?<input required name="destination" placeholder="e.g. Varanasi, Kedarnath"></label>
+            <div class="form-row"><label>Travellers<select name="travellers"><option>2 travellers</option><option>3 travellers</option><option>4 travellers</option><option>5+ travellers</option></select></label><label>Trip length<select name="days"><option>3 days</option><option>5 days</option><option>7 days</option></select></label></div>
+            <label>What matters most?<div class="choice-row"><button type="button" class="selected">Comfort</button><button type="button">Budget</button><button type="button">Senior-friendly</button><button type="button">Spiritual depth</button></div></label>
+            <button class="primary-btn full" type="submit">✦ Create my journey</button>
+          </form>
+        </div>
+        <div class="planner-preview" id="plannerPreview"><div class="ai-orb">✦</div><h3>Your thoughtful itinerary will appear here</h3><p>Namo considers travel time, temple hours, rest breaks and accessibility.</p></div>
+      </div>
+    </section>
+
+    <section class="page inner-page shell" id="darshan">
+      <div class="page-head row"><div><span class="kicker">LIVE DARSHAN</span><h1>Devotion, wherever you are.</h1><p>Join verified live streams from temple trusts across India.</p></div><span class="live-badge">● 8 temples live</span></div>
+      <div class="darshan-grid">
+        <article class="featured-live"><div class="live-visual"><span>● LIVE</span><button aria-label="Play live darshan">▶</button></div><div><h2>Shri Kashi Vishwanath</h2><p>Varanasi, Uttar Pradesh · Morning Aarti</p><footer><span>12.4K watching</span><button class="primary-btn">Watch darshan</button></footer></div></article>
+        <aside><h3>Live now</h3><button><span class="mini-live kedarnath">●</span><div><b>Kedarnath Dham</b><small>Evening Aarti · 8.1K watching</small></div></button><button><span class="mini-live ujjain">●</span><div><b>Mahakaleshwar</b><small>Shayana Aarti · 4.7K watching</small></div></button><button><span class="mini-live puri">●</span><div><b>Jagannath Temple</b><small>Daily Darshan · 6.2K watching</small></div></button></aside>
+      </div>
+    </section>
+
+    <section class="page inner-page shell" id="stays">
+      <div class="page-head"><span class="kicker">STAY NEAR THE SACRED</span><h1>Rest easy. Wake up closer.</h1><p>Verified hotels and dharamshalas selected for pilgrims and families.</p></div>
+      <div class="booking-bar"><label>Destination<input value="Varanasi"></label><label>Check in<input type="date"></label><label>Guests<select><option>2 guests</option><option>4 guests</option></select></label><button class="primary-btn">Find stays</button></div>
+      <div class="stay-grid">
+        <article><div class="stay-art stay1"><span>VERIFIED</span></div><div><small>1.2 km from temple</small><h3>Ganga View Residency</h3><p>4.8 ★ · Family rooms · Lift access</p><footer><b>₹2,450 <small>/ night</small></b><button>View stay</button></footer></div></article>
+        <article><div class="stay-art stay2"><span>TRUST STAY</span></div><div><small>500 m from temple</small><h3>Shri Kashi Dharamshala</h3><p>4.6 ★ · Satvik meals · Wheelchair access</p><footer><b>₹850 <small>/ night</small></b><button>View stay</button></footer></div></article>
+        <article><div class="stay-art stay3"><span>POPULAR</span></div><div><small>2 km from temple</small><h3>Heritage Ghat House</h3><p>4.9 ★ · River view · Airport pickup</p><footer><b>₹3,800 <small>/ night</small></b><button>View stay</button></footer></div></article>
+      </div>
+    </section>
+
+    <section class="page inner-page shell" id="journeys"><div class="empty-state"><span>ॐ</span><h1>Your sacred journeys</h1><p>Plans, bookings and saved places come together here.</p><button class="primary-btn" data-route="planner">Plan your first yatra →</button></div></section>
+    <section class="page inner-page shell" id="profile"><div class="profile-card"><div class="profile-avatar">AS</div><h1>Namaste, Arjun</h1><p>Member since 2026 · Bengaluru</p><div class="profile-stats"><div><b>3</b><small>Journeys</small></div><div><b>7</b><small>Saved places</small></div><div><b>2</b><small>Family members</small></div></div><div class="accessibility-settings"><h3>Accessibility</h3><label><span>Large text<small>Increase text across the app</small></span><input type="checkbox" id="largeText"></label><label><span>High contrast<small>Stronger borders and colour contrast</small></span><input type="checkbox" id="highContrast"></label><label><span>Follow device theme<small>Automatically match your system</small></span><input type="checkbox" id="autoTheme"></label></div><button class="outline-btn">Manage profile</button></div></section>
+    <section class="page inner-page shell" id="safety"><div class="page-head"><span class="kicker">NAMO CARE</span><h1>Support that travels with you.</h1></div><div class="safety-features"><article><span>⌖</span><h3>Family tracking</h3><p>Share live location privately with people you trust.</p></article><article><span>✚</span><h3>Emergency help</h3><p>Reach local assistance and emergency services quickly.</p></article><article><span>✓</span><h3>Verified partners</h3><p>Every listed guide, stay and service is identity checked.</p></article></div><button class="sos-btn" id="sosBtn">SOS · Get help now</button></section>
+  </main>
+
+  <footer>
+    <div class="shell footer-grid"><div class="brand footer-brand"><span class="brand-mark">न</span><span><b>NAMO SETU</b><small>Sacred journeys, simply made</small></span></div><div><b>Explore</b><a href="#" data-route="discover">Temples</a><a href="#" data-route="stays">Stays</a><a href="#" data-route="darshan">Live Darshan</a></div><div><b>Support</b><a href="#">Help centre</a><a href="#" data-route="safety">Safety</a><a href="#">Accessibility</a></div><div><b>For partners</b><a href="#">List your property</a><a href="#">Temple portal</a><a href="#">Guide portal</a></div></div>
+    <div class="shell footer-bottom"><span>© 2026 NAMO SETU. Made with devotion in India.</span><span>Privacy · Terms · हिंदी</span></div>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation"><button data-route="home" class="active">⌂<span>Home</span></button><button data-route="discover">⌖<span>Explore</span></button><button data-route="planner" class="ai-mobile">✦<span>Ask Namo</span></button><button data-route="journeys">▣<span>Journeys</span></button><button data-route="profile">○<span>Profile</span></button></nav>
+  <div class="modal" id="assistantModal" aria-hidden="true"><div class="modal-card"><button class="modal-close" id="modalClose">×</button><div class="ai-orb">✦</div><span class="kicker">NAMO VOICE</span><h2>Namaste, how can I help?</h2><p id="voiceStatus">Try saying “Plan a family trip to Varanasi.”</p><button class="voice-main" id="voiceMain">⌁</button><div class="wave"><i></i><i></i><i></i><i></i><i></i></div></div></div>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
