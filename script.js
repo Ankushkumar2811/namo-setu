@@ -14,7 +14,7 @@ routeButtons.forEach(button => button.addEventListener("click", event => {
   event.preventDefault();
   navigate(button.dataset.route);
 }));
-const initialRoute = location.hash.slice(1);
+const initialRoute = location.hash.slice(1).split("/")[0];
 if (initialRoute && document.getElementById(initialRoute)) navigate(initialRoute);
 
 document.getElementById("themeToggle").addEventListener("click", () => {
@@ -96,6 +96,51 @@ document.getElementById("autoTheme").addEventListener("change", event => {
   if (event.target.checked) document.body.classList.toggle("dark", matchMedia("(prefers-color-scheme: dark)").matches);
   showToast(event.target.checked ? "Theme will follow this device" : "Manual theme control restored");
 });
+
+const adminOverview = document.getElementById("adminOverview");
+const adminPanel = document.getElementById("adminPanel");
+const adminViews = {
+  users: { title: "Users & CRM", copy: "Manage members, consent, cohorts and support context.", stats: [["2,48,691", "Total users"], ["68.4%", "30-day retention"], ["1,842", "New this week"]], rows: [["Meera Sharma", "Premium family", "Active"], ["Rajesh Patel", "Yatra member", "Needs follow-up"], ["Anita Iyer", "Temple explorer", "Active"]] },
+  partners: { title: "Partner verification", copy: "Review onboarding evidence and activate trusted supply.", stats: [["486", "Active partners"], ["18", "Awaiting review"], ["96.8%", "SLA compliance"]], rows: [["Shiv Shakti Residency", "Hotel · Varanasi", "Documents ready"], ["Ravi Heritage Walks", "Guide · Ujjain", "Identity check"], ["Ganga Seva Sadan", "Dharamshala · Kashi", "Bank review"]] },
+  temples: { title: "Temple network", copy: "Govern verified profiles, timings, festivals and live darshan.", stats: [["1,284", "Published temples"], ["23", "Approval queue"], ["98.2%", "Fresh information"]], rows: [["Kashi Vishwanath", "Varanasi", "Crowd alert"], ["Mahakaleshwar", "Ujjain", "Verified"], ["Somnath Temple", "Gujarat", "Content review"]] },
+  bookings: { title: "Booking management", copy: "Track inventory, confirmations, cancellations and fulfillment.", stats: [["1,284", "Today"], ["97.6%", "Success rate"], ["14", "Needs action"]], rows: [["NS8F42A1", "Kashi Puja · ₹1,100", "Confirmed"], ["NS6D19C4", "Dharamshala · ₹2,400", "Pending"], ["NS9A15F2", "Hotel Stay · ₹7,600", "Refund review"]] },
+  finance: { title: "Finance & settlements", copy: "Reconcile payments, donations, refunds and partner settlements.", stats: [["₹38.6L", "Gross revenue"], ["₹12.4L", "Donations"], ["₹2.8L", "Settlement due"]], rows: [["RZP-847219", "Booking capture", "Reconciled"], ["DON-291847", "Temple donation", "Receipted"], ["RFN-038472", "Hotel refund", "Approval needed"]] },
+  operations: { title: "Live operations", copy: "Monitor platform health, crowds, queues and provider incidents.", stats: [["99.98%", "Platform health"], ["3", "Open alerts"], ["42ms", "Queue age"]], rows: [["Live darshan CDN", "Kashi stream", "Degraded"], ["Crowd service", "Varanasi", "High load"], ["Notification queue", "All regions", "Healthy"]] },
+  ai: { title: "AI control room", copy: "Observe grounded conversations, safety, quality, latency and cost.", stats: [["18,492", "Conversations"], ["4.7/5", "User rating"], ["0.04%", "Safety flags"]], rows: [["Planner v3.4", "Grounding 97.8%", "Healthy"], ["Hindi RAG", "Citation 96.1%", "Healthy"], ["Weather tool", "p95 1.9s", "Watch"]] },
+  content: { title: "Content & CMS", copy: "Draft, review, localize and publish verified pilgrimage content.", stats: [["3,842", "Published items"], ["27", "In review"], ["8", "Scheduled"]], rows: [["Dev Deepawali Guide", "Hindi + English", "Scheduled"], ["Accessible Kashi Route", "Operations review", "Draft"], ["Mahakal Bhasma Aarti", "Temple verified", "Published"]] },
+  support: { title: "Support desk", copy: "Resolve user, money, safety and partner cases against clear SLAs.", stats: [["12", "Open tickets"], ["18m", "First response"], ["94.6%", "Within SLA"]], rows: [["SUP-1842", "Payment captured, booking pending", "Urgent"], ["SUP-1838", "Guide meeting point", "In progress"], ["SUP-1829", "Receipt correction", "Waiting user"]] },
+  settings: { title: "Platform settings", copy: "Control roles, integrations, notification policy and audit settings.", stats: [["42", "Admin users"], ["11", "Integrations"], ["100%", "MFA coverage"]], rows: [["Roles & permissions", "Last reviewed today", "Configured"], ["Payment gateway", "Webhook healthy", "Connected"], ["Retention policy", "Review due in 8 days", "Action"]] }
+};
+
+function renderAdminView(view) {
+  document.querySelectorAll(".admin-sidebar [data-admin-view]").forEach(button => button.classList.toggle("active", button.dataset.adminView === view));
+  if (view === "executive") {
+    adminOverview.hidden = false;
+    adminPanel.hidden = true;
+    history.replaceState(null, "", "#admin");
+    return;
+  }
+  const data = adminViews[view];
+  if (!data) return;
+  adminOverview.hidden = true;
+  adminPanel.hidden = false;
+  adminPanel.innerHTML = `<header class="admin-panel-head"><div><small>ADMIN WORKSPACE</small><h1>${data.title}</h1><p>${data.copy}</p></div><button class="admin-back" data-admin-view="executive">← Executive overview</button></header><div class="admin-panel-grid">${data.stats.map(([value, label]) => `<article class="admin-module-card"><small>${label.toUpperCase()}</small><b>${value}</b><button data-admin-action="inspect">View details</button></article>`).join("")}</div><div class="admin-list">${data.rows.map(([name, detail, status]) => `<div class="admin-list-row"><b>${name}</b><span>${detail}</span><span>${status}</span><button data-admin-action="open">Open</button></div>`).join("")}</div>`;
+  history.replaceState(null, "", `#admin/${view}`);
+  adminPanel.querySelector("h1").focus?.();
+}
+
+document.getElementById("admin").addEventListener("click", event => {
+  const viewButton = event.target.closest("[data-admin-view]");
+  if (viewButton) {
+    event.preventDefault();
+    renderAdminView(viewButton.dataset.adminView);
+    return;
+  }
+  const actionButton = event.target.closest("[data-admin-action]");
+  if (actionButton) showToast(actionButton.dataset.adminAction === "open" ? "Record opened in review mode" : "Detailed report loaded");
+});
+
+if (location.hash.startsWith("#admin/")) renderAdminView(location.hash.split("/")[1]);
 
 const adminSearch = document.getElementById("adminSearch");
 adminSearch.addEventListener("input", () => {
