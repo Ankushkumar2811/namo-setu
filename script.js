@@ -13,6 +13,7 @@ function navigate(route) {
 routeButtons.forEach(button => button.addEventListener("click", event => {
   event.preventDefault();
   navigate(button.dataset.route);
+  closeMenu();
 }));
 const initialRoute = location.hash.slice(1).split("/")[0];
 if (initialRoute && document.getElementById(initialRoute)) navigate(initialRoute);
@@ -30,7 +31,26 @@ function showToast(message) {
 }
 
 document.getElementById("languageBtn").addEventListener("click", () => showToast("Language options: English · हिंदी · தமிழ் · ગુજરાતી"));
-document.getElementById("menuBtn").addEventListener("click", () => navigate("discover"));
+const mobileMenu = document.getElementById("mobileMenu");
+const menuBackdrop = document.getElementById("menuBackdrop");
+function openMenu() {
+  mobileMenu.classList.add("open");
+  mobileMenu.setAttribute("aria-hidden", "false");
+  menuBackdrop.hidden = false;
+  document.body.classList.add("menu-open");
+  document.getElementById("menuClose").focus();
+}
+function closeMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove("open");
+  mobileMenu.setAttribute("aria-hidden", "true");
+  menuBackdrop.hidden = true;
+  document.body.classList.remove("menu-open");
+}
+document.getElementById("menuBtn").addEventListener("click", openMenu);
+document.getElementById("menuClose").addEventListener("click", closeMenu);
+menuBackdrop.addEventListener("click", closeMenu);
+document.addEventListener("keydown", event => { if (event.key === "Escape") closeMenu(); });
 document.getElementById("aiSearch").addEventListener("submit", event => {
   event.preventDefault();
   const prompt = event.currentTarget.querySelector("input").value.trim();
