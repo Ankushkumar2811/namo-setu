@@ -11,7 +11,10 @@ class Base(DeclarativeBase):
 
 
 settings = get_settings()
-engine = create_async_engine(settings.database_url, pool_pre_ping=True, pool_size=20, max_overflow=30)
+engine_options: dict[str, object] = {"pool_pre_ping": True}
+if not settings.database_url.startswith("sqlite"):
+    engine_options.update(pool_size=20, max_overflow=30, pool_recycle=1800)
+engine = create_async_engine(settings.database_url, **engine_options)
 SessionFactory = async_sessionmaker(engine, expire_on_commit=False, autoflush=False)
 
 
