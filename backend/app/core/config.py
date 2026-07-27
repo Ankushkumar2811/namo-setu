@@ -20,6 +20,13 @@ class Settings(BaseSettings):
     refresh_token_days: int = 30
     cors_origins: str = "http://localhost:5173,https://namo-setu.vercel.app"
     requests_per_minute: int = 120
+    openai_api_key: str | None = None
+    openai_model: str = "gpt-5.6"
+    ai_provider: str = "openai"
+    ai_max_parallel_agents: int = 4
+    ai_daily_budget_usd: float = 100.0
+    qdrant_url: str | None = None
+    qdrant_api_key: str | None = None
 
     @property
     def allowed_origins(self) -> list[str]:

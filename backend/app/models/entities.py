@@ -79,3 +79,40 @@ class AuditLog(TimestampedSoftDelete, Base):
     entity_id: Mapped[UUID | None] = mapped_column(index=True)
     ip_address: Mapped[str | None] = mapped_column(String(45))
     metadata_json: Mapped[str] = mapped_column(Text, default="{}")
+
+
+class AIConversation(TimestampedSoftDelete, Base):
+    __tablename__ = "ai_conversations"
+    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id"), index=True)
+    title: Mapped[str] = mapped_column(String(160))
+    language: Mapped[str] = mapped_column(String(12), default="en-IN", index=True)
+    status: Mapped[str] = mapped_column(String(20), default="active", index=True)
+
+
+class AIMessage(TimestampedSoftDelete, Base):
+    __tablename__ = "ai_messages"
+    __table_args__ = (Index("ix_ai_messages_conversation_created", "conversation_id", "created_at"),)
+    conversation_id: Mapped[UUID] = mapped_column(ForeignKey("ai_conversations.id"), index=True)
+    role: Mapped[str] = mapped_column(String(16))
+    content: Mapped[str] = mapped_column(Text)
+    citations_json: Mapped[str] = mapped_column(Text, default="[]")
+    confidence: Mapped[Decimal | None] = mapped_column(Numeric(3, 2))
+    model: Mapped[str | None] = mapped_column(String(80), index=True)
+    latency_ms: Mapped[int | None]
+    input_tokens: Mapped[int | None]
+    output_tokens: Mapped[int | None]
+
+
+class AIMemory(TimestampedSoftDelete, Base):
+    __tablename__ = "ai_memories"
+    __table_args__ = (
+        Index("ix_ai_memories_user_category", "user_id", "category"),
+        CheckConstraint("confidence >= 0 AND confidence <= 1", name="memory_confidence_range"),
+    )
+    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id"), index=True)
+    category: Mapped[str] = mapped_column(String(40), index=True)
+    key: Mapped[str] = mapped_column(String(100))
+    encrypted_value: Mapped[str] = mapped_column(Text)
+    confidence: Mapped[Decimal] = mapped_column(Numeric(3, 2), default=1)
+    consent_source: Mapped[str] = mapped_column(String(40))
+    expires_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), index=True)

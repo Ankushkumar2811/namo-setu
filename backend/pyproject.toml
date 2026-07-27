@@ -17,7 +17,8 @@ dependencies = [
   "httpx>=0.28,<1",
   "email-validator>=2.2,<3",
   "structlog>=25.4,<26",
-  "prometheus-client>=0.22,<1"
+  "prometheus-client>=0.22,<1",
+  "openai>=1.97,<2"
 ]
 
 [project.optional-dependencies]
