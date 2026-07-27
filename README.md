@@ -24,3 +24,14 @@ Create a production build with `npm run build`.
 ## Architecture direction
 
 This front-end product slice is intentionally API-ready. Production services should be split by identity, catalog, journeys, bookings, payments, live media, safety and notifications, with PostgreSQL as the transactional store, Redis for caching and queues, and object storage/CDN for media.
+
+## Architecture documentation
+
+- [Database specification](docs/DATABASE_SPECIFICATION.md)
+- [API reference](docs/API_REFERENCE.md)
+- [System specification](docs/SYSTEM_SPECIFICATION.md)
+- [Complete workflow manual](docs/PART_9_WORKFLOW_MANUAL.md)
+- [System flows and diagrams](docs/PART_9_SYSTEM_FLOWS.md)
+- [AI workflow manual](docs/PART_9_AI_WORKFLOW_MANUAL.md)
+- [Operations and support manual](docs/PART_9_OPERATIONS_AND_SUPPORT.md)
+- [Developer handover](docs/PART_9_DEVELOPER_HANDOVER.md)
