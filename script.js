@@ -98,3 +98,25 @@ document.getElementById("autoTheme").addEventListener("change", event => {
 });
 window.addEventListener("offline", () => document.getElementById("offlineBar").style.display = "block");
 window.addEventListener("online", () => document.getElementById("offlineBar").style.display = "none");
+
+let installPrompt;
+const installBtn = document.getElementById("installBtn");
+window.addEventListener("beforeinstallprompt", event => {
+  event.preventDefault();
+  installPrompt = event;
+  installBtn.hidden = false;
+});
+installBtn.addEventListener("click", async () => {
+  if (!installPrompt) return;
+  installPrompt.prompt();
+  const result = await installPrompt.userChoice;
+  showToast(result.outcome === "accepted" ? "NAMO SETU installed" : "Install available anytime");
+  installPrompt = undefined;
+  installBtn.hidden = true;
+});
+window.addEventListener("appinstalled", () => showToast("NAMO SETU is ready on your device"));
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("/service-worker.js")
+    .catch(() => showToast("Offline setup will retry automatically")));
+}

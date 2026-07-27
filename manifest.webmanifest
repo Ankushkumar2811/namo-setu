@@ -1,0 +1,25 @@
+{
+  "name": "NAMO SETU — Sacred journeys, simply made",
+  "short_name": "NAMO SETU",
+  "description": "India's intelligent pilgrimage companion",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffaf2",
+  "theme_color": "#e95c34",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["travel", "lifestyle", "navigation"],
+  "icons": [
+    {
+      "src": "/images/namo-setu-hero.png",
+      "sizes": "1920x1024",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {"name": "Plan a yatra", "url": "/#planner"},
+    {"name": "Live Darshan", "url": "/#darshan"},
+    {"name": "Emergency help", "url": "/#safety"}
+  ]
+}

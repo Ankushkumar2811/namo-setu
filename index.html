@@ -5,11 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fffaf2">
   <meta name="description" content="NAMO SETU — India's intelligent pilgrimage companion. Discover temples, plan journeys, book stays and travel with confidence.">
+  <meta name="application-name" content="NAMO SETU">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="NAMO SETU — Your journey. Divinely connected.">
+  <meta property="og:description" content="Discover temples, plan pilgrimages and travel with confidence.">
+  <meta property="og:image" content="/images/namo-setu-hero.png">
+  <meta property="og:url" content="https://namo-setu.vercel.app">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://namo-setu.vercel.app">
+  <link rel="manifest" href="/manifest.webmanifest">
   <title>NAMO SETU — Your journey. Divinely connected.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TravelAgency","name":"NAMO SETU","url":"https://namo-setu.vercel.app","description":"India's intelligent pilgrimage companion","areaServed":"India"}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -27,6 +39,7 @@
       <button data-route="stays">Stays</button>
     </nav>
     <div class="header-actions">
+      <button class="install-btn" id="installBtn" hidden>Install app</button>
       <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">☼</button>
       <button class="language-btn" id="languageBtn">EN <span>⌄</span></button>
       <button class="profile-btn" data-route="profile"><span>AS</span><i>Arjun</i></button>
@@ -178,6 +191,6 @@
   <nav class="mobile-nav" aria-label="Mobile navigation"><button data-route="home" class="active">⌂<span>Home</span></button><button data-route="discover">⌖<span>Explore</span></button><button data-route="planner" class="ai-mobile">✦<span>Ask Namo</span></button><button data-route="journeys">▣<span>Journeys</span></button><button data-route="profile">○<span>Profile</span></button></nav>
   <div class="modal" id="assistantModal" aria-hidden="true"><div class="modal-card"><button class="modal-close" id="modalClose">×</button><div class="ai-orb">✦</div><span class="kicker">NAMO VOICE</span><h2>Namaste, how can I help?</h2><p id="voiceStatus">Try saying “Plan a family trip to Varanasi.”</p><button class="voice-main" id="voiceMain">⌁</button><div class="wave"><i></i><i></i><i></i><i></i><i></i></div></div></div>
   <div class="toast" id="toast"></div>
-  <script src="script.js"></script>
+  <script type="module" src="/script.js"></script>
 </body>
 </html>

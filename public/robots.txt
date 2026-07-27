@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://namo-setu.vercel.app/sitemap.xml
