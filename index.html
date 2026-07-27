@@ -43,6 +43,7 @@
       <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">☼</button>
       <button class="language-btn" id="languageBtn">EN <span>⌄</span></button>
       <button class="profile-btn" data-route="profile"><span>AS</span><i>Arjun</i></button>
+      <button class="admin-link" data-route="admin">Admin</button>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
     </div>
   </header>
@@ -181,6 +182,32 @@
     <section class="page inner-page shell" id="journeys"><div class="empty-state"><span>ॐ</span><h1>Your sacred journeys</h1><p>Plans, bookings and saved places come together here.</p><button class="primary-btn" data-route="planner">Plan your first yatra →</button></div></section>
     <section class="page inner-page shell" id="profile"><div class="profile-card"><div class="profile-avatar">AS</div><h1>Namaste, Arjun</h1><p>Member since 2026 · Bengaluru</p><div class="profile-stats"><div><b>3</b><small>Journeys</small></div><div><b>7</b><small>Saved places</small></div><div><b>2</b><small>Family members</small></div></div><div class="accessibility-settings"><h3>Accessibility</h3><label><span>Large text<small>Increase text across the app</small></span><input type="checkbox" id="largeText"></label><label><span>High contrast<small>Stronger borders and colour contrast</small></span><input type="checkbox" id="highContrast"></label><label><span>Follow device theme<small>Automatically match your system</small></span><input type="checkbox" id="autoTheme"></label></div><button class="outline-btn">Manage profile</button></div></section>
     <section class="page inner-page shell" id="safety"><div class="page-head"><span class="kicker">NAMO CARE</span><h1>Support that travels with you.</h1></div><div class="safety-features"><article><span>⌖</span><h3>Family tracking</h3><p>Share live location privately with people you trust.</p></article><article><span>✚</span><h3>Emergency help</h3><p>Reach local assistance and emergency services quickly.</p></article><article><span>✓</span><h3>Verified partners</h3><p>Every listed guide, stay and service is identity checked.</p></article></div><button class="sos-btn" id="sosBtn">SOS · Get help now</button></section>
+    <section class="page admin-page" id="admin">
+      <aside class="admin-sidebar">
+        <a href="#" class="brand" data-route="admin"><span class="brand-mark">न</span><span><b>NAMO SETU</b><small>Enterprise OS</small></span></a>
+        <nav><span>WORKSPACE</span><button class="active">▦ Executive</button><button>♙ Users & CRM</button><button>⌘ Partners</button><button>⌂ Temples</button><button>▣ Bookings</button><button>₹ Finance</button><span>OPERATIONS</span><button>◉ Live operations</button><button>✦ AI control room</button><button>◫ Content & CMS</button><button>☏ Support desk <i>12</i></button><button>⚙ Settings</button></nav>
+        <div class="admin-user"><span>AK</span><div><b>Ankush Kumar</b><small>Super Admin</small></div></div>
+      </aside>
+      <div class="admin-main">
+        <header class="admin-header"><div><small>MONDAY, 27 JULY</small><h1>Good morning, Ankush.</h1><p>Here’s what’s happening across NAMO SETU today.</p></div><div><button class="admin-icon">⌕</button><button class="admin-icon">♢<i></i></button><button class="admin-primary">＋ Quick action</button></div></header>
+        <div class="admin-alert"><span>⚠</span><div><b>3 operational alerts need attention</b><small>High crowd at Kashi Vishwanath · 2 delayed partner settlements</small></div><button>Review alerts →</button></div>
+        <section class="kpi-grid">
+          <article><div><span class="kpi-icon users">♙</span><small>TOTAL USERS</small></div><b>2,48,691</b><p><i>↑ 12.4%</i> vs last month</p></article>
+          <article><div><span class="kpi-icon bookings">▣</span><small>BOOKINGS TODAY</small></div><b>1,284</b><p><i>↑ 8.1%</i> vs yesterday</p></article>
+          <article><div><span class="kpi-icon revenue">₹</span><small>GROSS REVENUE</small></div><b>₹38.6L</b><p><i>↑ 18.7%</i> this month</p></article>
+          <article><div><span class="kpi-icon ai">✦</span><small>AI RESOLUTIONS</small></div><b>84.2%</b><p><i>↑ 3.2%</i> without handoff</p></article>
+        </section>
+        <section class="admin-grid">
+          <article class="chart-card"><header><div><small>BUSINESS PERFORMANCE</small><h2>Revenue & bookings</h2></div><select id="chartPeriod"><option>Last 7 days</option><option>Last 30 days</option></select></header><div class="chart-legend"><span><i class="orange"></i>Revenue</span><span><i class="green-dot"></i>Bookings</span></div><div class="bar-chart" aria-label="Revenue chart"><div style="--h:42%"><i></i><span>Mon</span></div><div style="--h:58%"><i></i><span>Tue</span></div><div style="--h:48%"><i></i><span>Wed</span></div><div style="--h:76%"><i></i><span>Thu</span></div><div style="--h:69%"><i></i><span>Fri</span></div><div style="--h:88%"><i></i><span>Sat</span></div><div style="--h:64%"><i></i><span>Sun</span></div></div></article>
+          <article class="health-card"><header><small>PLATFORM HEALTH</small><h2>Live services</h2></header><div class="health-score"><strong>99.98%</strong><span>All systems operational</span></div><ul><li><span>API & bookings</span><b>Operational</b></li><li><span>Payments</span><b>Operational</b></li><li><span>AI agents</span><b>10 / 10 online</b></li><li><span>Live darshan</span><em>1 degraded</em></li></ul></article>
+        </section>
+        <section class="operations-card">
+          <header><div><small>LIVE OPERATIONS</small><h2>Recent bookings</h2></div><div><input id="adminSearch" placeholder="Search reference or customer"><button id="exportCsv">Export CSV</button><button>View all →</button></div></header>
+          <div class="admin-table-wrap"><table id="bookingTable"><thead><tr><th>REFERENCE</th><th>CUSTOMER</th><th>PRODUCT</th><th>PARTNER</th><th>AMOUNT</th><th>STATUS</th></tr></thead><tbody><tr><td><b>NS8F42A1</b><small>2 min ago</small></td><td>Meera Sharma</td><td>Kashi Puja</td><td>Shri Kashi Trust</td><td>₹1,100</td><td><span class="status confirmed">Confirmed</span></td></tr><tr><td><b>NS6D19C4</b><small>8 min ago</small></td><td>Rajesh Patel</td><td>Dharamshala</td><td>Ganga Seva Sadan</td><td>₹2,400</td><td><span class="status pending">Pending</span></td></tr><tr><td><b>NS2B73E8</b><small>14 min ago</small></td><td>Anita Iyer</td><td>Local Guide</td><td>Vikas Mishra</td><td>₹1,800</td><td><span class="status confirmed">Confirmed</span></td></tr><tr><td><b>NS9A15F2</b><small>21 min ago</small></td><td>Gurpreet Singh</td><td>Hotel Stay</td><td>Heritage Ghat House</td><td>₹7,600</td><td><span class="status refund">Refund review</span></td></tr></tbody></table></div>
+        </section>
+        <section class="admin-bottom"><article><header><small>PARTNER NETWORK</small><h2>Verification queue</h2></header><div class="queue-item"><span class="partner-avatar">⌂</span><div><b>Shiv Shakti Residency</b><small>Hotel · Varanasi</small></div><strong>Documents ready</strong><button>Review</button></div><div class="queue-item"><span class="partner-avatar">♙</span><div><b>Ravi Heritage Walks</b><small>Guide · Ujjain</small></div><strong>Identity check</strong><button>Review</button></div></article><article><header><small>AI CONTROL ROOM</small><h2>Today’s intelligence</h2></header><div class="ai-admin-stat"><span>✦</span><div><b>18,492</b><small>conversations · ₹8,420 estimated cost</small></div></div><div class="mini-stats"><div><b>1.8s</b><small>Avg response</small></div><div><b>4.7/5</b><small>User rating</small></div><div><b>0.04%</b><small>Safety flags</small></div></div></article></section>
+      </div>
+    </section>
   </main>
 
   <footer>

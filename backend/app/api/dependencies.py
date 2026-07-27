@@ -26,3 +26,14 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], sessio
 
 
 CurrentUser = Annotated[User, Depends(get_current_user)]
+
+
+def require_roles(*allowed_roles: str):
+    """Create a dependency that enforces platform-level roles."""
+
+    async def role_guard(user: CurrentUser) -> User:
+        if user.role not in allowed_roles:
+            raise DomainError("forbidden", "You do not have permission to access this resource", 403)
+        return user
+
+    return role_guard

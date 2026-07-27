@@ -116,3 +116,78 @@ class AIMemory(TimestampedSoftDelete, Base):
     confidence: Mapped[Decimal] = mapped_column(Numeric(3, 2), default=1)
     consent_source: Mapped[str] = mapped_column(String(40))
     expires_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), index=True)
+
+
+class Organization(TimestampedSoftDelete, Base):
+    __tablename__ = "organizations"
+    slug: Mapped[str] = mapped_column(String(120), unique=True, index=True)
+    name: Mapped[str] = mapped_column(String(200), index=True)
+    organization_type: Mapped[str] = mapped_column(String(40), index=True)
+    state: Mapped[str | None] = mapped_column(String(120), index=True)
+    status: Mapped[str] = mapped_column(String(20), default="pending", index=True)
+    settings_json: Mapped[str] = mapped_column(Text, default="{}")
+
+
+class Permission(TimestampedSoftDelete, Base):
+    __tablename__ = "permissions"
+    code: Mapped[str] = mapped_column(String(100), unique=True, index=True)
+    description: Mapped[str] = mapped_column(String(240))
+    module: Mapped[str] = mapped_column(String(60), index=True)
+
+
+class OrganizationMember(TimestampedSoftDelete, Base):
+    __tablename__ = "organization_members"
+    __table_args__ = (
+        Index("ix_org_members_org_user", "organization_id", "user_id", unique=True),
+    )
+    organization_id: Mapped[UUID] = mapped_column(ForeignKey("organizations.id"), index=True)
+    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id"), index=True)
+    role: Mapped[str] = mapped_column(String(40), index=True)
+    permissions_json: Mapped[str] = mapped_column(Text, default="[]")
+    status: Mapped[str] = mapped_column(String(20), default="active", index=True)
+
+
+class PartnerProfile(TimestampedSoftDelete, Base):
+    __tablename__ = "partner_profiles"
+    organization_id: Mapped[UUID] = mapped_column(ForeignKey("organizations.id"), unique=True)
+    partner_type: Mapped[str] = mapped_column(String(40), index=True)
+    legal_name: Mapped[str] = mapped_column(String(200))
+    tax_identifier: Mapped[str | None] = mapped_column(String(40), index=True)
+    verification_status: Mapped[str] = mapped_column(String(20), default="pending", index=True)
+    commission_rate: Mapped[Decimal] = mapped_column(Numeric(5, 2), default=0)
+    payout_status: Mapped[str] = mapped_column(String(20), default="on_hold", index=True)
+
+
+class SupportTicket(TimestampedSoftDelete, Base):
+    __tablename__ = "support_tickets"
+    __table_args__ = (Index("ix_support_status_priority", "status", "priority"),)
+    organization_id: Mapped[UUID | None] = mapped_column(ForeignKey("organizations.id"), index=True)
+    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id"), index=True)
+    reference: Mapped[str] = mapped_column(String(32), unique=True, index=True)
+    subject: Mapped[str] = mapped_column(String(240))
+    status: Mapped[str] = mapped_column(String(20), default="open", index=True)
+    priority: Mapped[str] = mapped_column(String(16), default="normal", index=True)
+    assigned_to: Mapped[UUID | None] = mapped_column(index=True)
+    sla_due_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), index=True)
+
+
+class CRMLead(TimestampedSoftDelete, Base):
+    __tablename__ = "crm_leads"
+    organization_id: Mapped[UUID | None] = mapped_column(ForeignKey("organizations.id"), index=True)
+    owner_id: Mapped[UUID | None] = mapped_column(ForeignKey("users.id"), index=True)
+    full_name: Mapped[str] = mapped_column(String(120), index=True)
+    email: Mapped[str | None] = mapped_column(String(320), index=True)
+    phone: Mapped[str | None] = mapped_column(String(20), index=True)
+    stage: Mapped[str] = mapped_column(String(30), default="new", index=True)
+    source: Mapped[str] = mapped_column(String(40), index=True)
+    estimated_value_inr: Mapped[Decimal] = mapped_column(Numeric(12, 2), default=0)
+    next_action_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), index=True)
+
+
+class FeatureFlag(TimestampedSoftDelete, Base):
+    __tablename__ = "feature_flags"
+    key: Mapped[str] = mapped_column(String(100), unique=True, index=True)
+    enabled: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
+    rollout_percentage: Mapped[int] = mapped_column(default=0)
+    organization_id: Mapped[UUID | None] = mapped_column(ForeignKey("organizations.id"), index=True)
+    rules_json: Mapped[str] = mapped_column(Text, default="{}")

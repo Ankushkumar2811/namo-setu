@@ -96,6 +96,24 @@ document.getElementById("autoTheme").addEventListener("change", event => {
   if (event.target.checked) document.body.classList.toggle("dark", matchMedia("(prefers-color-scheme: dark)").matches);
   showToast(event.target.checked ? "Theme will follow this device" : "Manual theme control restored");
 });
+
+const adminSearch = document.getElementById("adminSearch");
+adminSearch.addEventListener("input", () => {
+  const query = adminSearch.value.toLowerCase();
+  document.querySelectorAll("#bookingTable tbody tr").forEach(row => {
+    row.hidden = !row.textContent.toLowerCase().includes(query);
+  });
+});
+document.getElementById("exportCsv").addEventListener("click", () => {
+  const rows = [...document.querySelectorAll("#bookingTable tr")].filter(row => !row.hidden);
+  const csv = rows.map(row => [...row.children].map(cell => `"${cell.textContent.trim().replaceAll('"', '""')}"`).join(",")).join("\n");
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+  link.download = `namo-setu-bookings-${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+  showToast("Booking report exported");
+});
 window.addEventListener("offline", () => document.getElementById("offlineBar").style.display = "block");
 window.addEventListener("online", () => document.getElementById("offlineBar").style.display = "none");
 
