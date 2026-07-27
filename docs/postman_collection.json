@@ -1,0 +1,62 @@
+{
+  "info": {
+    "name": "NAMO SETU API v1",
+    "_postman_id": "63d4f181-9684-4cfb-8b27-5b825f41ea88",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "http://localhost:8000/api/v1"},
+    {"key": "accessToken", "value": ""},
+    {"key": "templeId", "value": "550e8400-e29b-41d4-a716-446655440000"}
+  ],
+  "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{accessToken}}", "type": "string"}]},
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "auth": {"type": "noauth"},
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"email\":\"meera@example.in\",\"full_name\":\"Meera Sharma\",\"password\":\"A-long-unique-passphrase\"}"},
+            "url": "{{baseUrl}}/auth/register"
+          }
+        },
+        {
+          "name": "Login",
+          "event": [{"listen": "test", "script": {"exec": ["const b=pm.response.json(); if(b.access_token) pm.collectionVariables.set('accessToken',b.access_token);"]}}],
+          "request": {
+            "auth": {"type": "noauth"},
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"email\":\"meera@example.in\",\"password\":\"A-long-unique-passphrase\"}"},
+            "url": "{{baseUrl}}/auth/login"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Temples",
+      "item": [
+        {"name": "List", "request": {"auth": {"type": "noauth"}, "method": "GET", "url": "{{baseUrl}}/temples?page=1&page_size=20"}},
+        {"name": "Detail", "request": {"auth": {"type": "noauth"}, "method": "GET", "url": "{{baseUrl}}/temples/{{templeId}}"}}
+      ]
+    },
+    {
+      "name": "AI",
+      "item": [
+        {
+          "name": "Chat",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"message\":\"Plan a senior-friendly three-day Kashi journey\",\"language\":\"en-IN\"}"},
+            "url": "{{baseUrl}}/ai/chat"
+          }
+        }
+      ]
+    }
+  ]
+}
