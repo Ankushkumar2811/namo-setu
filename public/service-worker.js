@@ -1,10 +1,7 @@
-const CACHE_VERSION = "namo-setu-v3";
+const CACHE_VERSION = "namo-setu-v4";
 const APP_SHELL = [
   "/",
   "/index.html",
-  "/styles.css",
-  "/script.js",
-  "/manifest.webmanifest",
   "/offline.html",
   "/images/namo-setu-hero.png"
 ];

@@ -67,17 +67,51 @@ document.querySelectorAll(".destination-card").forEach(card => card.addEventList
 }));
 
 const search = document.getElementById("templeSearch");
-search.addEventListener("input", () => {
+function filterTemples() {
   const query = search.value.toLowerCase().trim();
   document.querySelectorAll("#templeGrid article").forEach(card => {
     card.style.display = card.dataset.name.toLowerCase().includes(query) ? "" : "none";
   });
+}
+search.addEventListener("input", filterTemples);
+document.getElementById("templeSearchBtn").addEventListener("click", () => {
+  filterTemples();
+  showToast(search.value.trim() ? `Showing results for “${search.value.trim()}”` : "Showing all verified temples");
 });
 document.querySelectorAll(".filter-row button").forEach(button => button.addEventListener("click", () => {
   document.querySelectorAll(".filter-row button").forEach(item => item.classList.remove("active"));
   button.classList.add("active");
-  showToast(`${button.textContent} places selected`);
+  const filter = button.dataset.filter.toLowerCase();
+  document.querySelectorAll("#templeGrid article").forEach(card => {
+    card.style.display = !filter || card.dataset.name.toLowerCase().includes(filter) ? "" : "none";
+  });
+  showToast(filter ? `${button.textContent} filter applied` : "Showing all places");
 }));
+
+document.querySelectorAll("[data-service]").forEach(button => button.addEventListener("click", () => {
+  navigate("planner");
+  document.querySelector('#plannerForm input[name="destination"]').focus();
+  showToast(`${button.dataset.service} added as a planning preference`);
+}));
+
+const templeTabContent = document.getElementById("templeTabContent");
+const templeTabs = {
+  overview: ["ABOUT THE TEMPLE", "A city of light, a shrine beyond time.", "One of the twelve revered Jyotirlingas, Kashi Vishwanath stands at the spiritual heart of Varanasi. This guide combines cultural context with practical, verified information."],
+  timings: ["TODAY’S SCHEDULE", "Plan around the temple rhythm.", "Temple opens from 3:00 AM to 11:00 PM. Mangala Aarti begins at 3:00 AM; entry windows and festival schedules should be rechecked before travel."],
+  facilities: ["PILGRIM FACILITIES", "Support for a calmer visit.", "Drinking water, lockers, medical desk, wheelchair assistance, cloakroom and verified prasad counters are available at designated gates."],
+  rules: ["VISITOR GUIDANCE", "Respect the place and the people.", "Use modest clothing, deposit footwear and restricted items, follow photography instructions, and rely on official counters for passes and offerings."],
+  reviews: ["VERIFIED EXPERIENCES", "Recent pilgrim feedback.", "Visitors value the assisted-access route and early-morning darshan. Peak-hour queue updates and clearer gate signage remain the most common requests."]
+};
+document.querySelectorAll("[data-temple-tab]").forEach(button => button.addEventListener("click", () => {
+  document.querySelectorAll("[data-temple-tab]").forEach(item => item.classList.toggle("active", item === button));
+  const [kicker, title, copy] = templeTabs[button.dataset.templeTab];
+  templeTabContent.innerHTML = `<span class="kicker">${kicker}</span><h2>${title}</h2><p>${copy}</p>`;
+}));
+document.getElementById("saveTemple").addEventListener("click", event => {
+  const saved = event.currentTarget.classList.toggle("saved");
+  event.currentTarget.textContent = saved ? "♥ Saved" : "♡ Save";
+  showToast(saved ? "Kashi Vishwanath saved to your wishlist" : "Temple removed from wishlist");
+});
 
 document.querySelectorAll(".choice-row button").forEach(button => button.addEventListener("click", () => button.classList.toggle("selected")));
 document.getElementById("plannerForm").addEventListener("submit", event => {
@@ -101,6 +135,23 @@ document.getElementById("voiceMain").addEventListener("click", () => {
   voiceStatus.textContent = modal.classList.contains("listening") ? "Listening… speak naturally." : "I heard: “Plan a family trip to Varanasi.”";
 });
 document.getElementById("sosBtn").addEventListener("click", () => showToast("Emergency support panel opened — call 112 for immediate danger"));
+document.querySelectorAll("[data-stream]").forEach(button => button.addEventListener("click", () => showToast(`${button.dataset.stream} live player opened`)));
+document.getElementById("findStays").addEventListener("click", () => {
+  const destination = document.getElementById("stayDestination").value.trim() || "your destination";
+  showToast(`Showing verified stays in ${destination}`);
+});
+document.querySelectorAll("[data-stay]").forEach(button => button.addEventListener("click", () => showToast(`${button.dataset.stay} details opened`)));
+document.getElementById("manageProfile").addEventListener("click", () => showToast("Profile editor opened in demo mode"));
+document.querySelectorAll("[data-help]").forEach(link => link.addEventListener("click", event => {
+  event.preventDefault();
+  showToast("Help centre is ready for support integration");
+}));
+document.querySelectorAll("[data-partner]").forEach(link => link.addEventListener("click", event => {
+  event.preventDefault();
+  navigate("admin");
+  renderAdminView("partners");
+  showToast(`${link.dataset.partner} partner onboarding opened`);
+}));
 function applyPreference(input, className, key) {
   if (!input) return;
   input.checked = localStorage.getItem(key) === "true";
@@ -157,7 +208,16 @@ document.getElementById("admin").addEventListener("click", event => {
     return;
   }
   const actionButton = event.target.closest("[data-admin-action]");
-  if (actionButton) showToast(actionButton.dataset.adminAction === "open" ? "Record opened in review mode" : "Detailed report loaded");
+  if (actionButton) {
+    const messages = {
+      open: "Record opened in review mode",
+      inspect: "Detailed report loaded",
+      search: "Admin search is ready—use booking search or select a module",
+      notifications: "3 operational notifications are awaiting review",
+      quick: "Quick actions: add partner, publish alert, or create support case"
+    };
+    showToast(messages[actionButton.dataset.adminAction] || "Admin action completed");
+  }
 });
 
 if (location.hash.startsWith("#admin/")) renderAdminView(location.hash.split("/")[1]);

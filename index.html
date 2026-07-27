@@ -131,7 +131,7 @@
 
       <section class="services-section shell">
         <div class="section-heading"><div><span class="kicker">EVERYTHING IN ONE PLACE</span><h2>From arrival to aarti.</h2></div></div>
-        <div class="service-pills"><button data-route="stays"><span>⌂</span> Hotels</button><button data-route="stays"><span>♜</span> Dharamshalas</button><button><span>⌁</span> Cabs</button><button><span>▰</span> Trains</button><button><span>♙</span> Local guides</button><button><span>♨</span> Puja booking</button><button><span>♡</span> Donations</button><button data-route="darshan"><span>◉</span> Aarti today</button></div>
+        <div class="service-pills"><button data-route="stays"><span>⌂</span> Hotels</button><button data-route="stays"><span>♜</span> Dharamshalas</button><button data-service="Cab booking"><span>⌁</span> Cabs</button><button data-service="Train planning"><span>▰</span> Trains</button><button data-service="Local guide"><span>♙</span> Local guides</button><button data-service="Puja booking"><span>♨</span> Puja booking</button><button data-service="Donation"><span>♡</span> Donations</button><button data-route="darshan"><span>◉</span> Aarti today</button></div>
       </section>
 
       <section class="safety shell">
@@ -146,8 +146,8 @@
 
     <section class="page inner-page shell" id="discover">
       <div class="page-head"><span class="kicker">DISCOVER SACRED INDIA</span><h1>Find a place that speaks to you.</h1><p>Explore temples, traditions and journeys across India.</p></div>
-      <div class="search-panel"><span>⌕</span><input id="templeSearch" placeholder="Search temple, city or deity…" aria-label="Search temples"><button>Search</button></div>
-      <div class="filter-row"><button class="active">All places</button><button>Jyotirlinga</button><button>Shakti Peetha</button><button>Char Dham</button><button>South India</button></div>
+      <div class="search-panel"><span>⌕</span><input id="templeSearch" placeholder="Search temple, city or deity…" aria-label="Search temples"><button id="templeSearchBtn">Search</button></div>
+      <div class="filter-row"><button class="active" data-filter="">All places</button><button data-filter="Jyotirlinga">Jyotirlinga</button><button data-filter="Shakti Peetha">Shakti Peetha</button><button data-filter="Char Dham">Char Dham</button><button data-filter="South India">South India</button></div>
       <div class="temple-grid" id="templeGrid">
         <article data-name="Kashi Vishwanath Varanasi Shiva"><div class="place-art varanasi"></div><span>JYOTIRLINGA</span><h3>Kashi Vishwanath</h3><p>Varanasi, Uttar Pradesh</p><button data-route="temple">View temple →</button></article>
         <article data-name="Kedarnath Uttarakhand Shiva"><div class="place-art kedarnath"></div><span>CHAR DHAM</span><h3>Kedarnath Dham</h3><p>Rudraprayag, Uttarakhand</p><button data-route="planner">Plan this journey →</button></article>
@@ -158,8 +158,8 @@
 
     <section class="page inner-page shell" id="temple">
       <nav class="breadcrumb" aria-label="Breadcrumb"><button data-route="discover">Discover</button><span>›</span><span>Kashi Vishwanath</span></nav>
-      <div class="temple-hero"><div><span class="verified">✓ OFFICIALLY VERIFIED</span><h1>Shri Kashi Vishwanath</h1><p>Varanasi, Uttar Pradesh · Jyotirlinga</p><div class="temple-actions"><button class="primary-btn" data-route="planner">Plan this journey</button><button class="glass-btn">♡ Save</button></div></div></div>
-      <div class="temple-layout"><div><div class="info-tabs"><button class="active">Overview</button><button>Timings</button><button>Facilities</button><button>Rules</button><button>Reviews</button></div><section class="temple-copy"><span class="kicker">ABOUT THE TEMPLE</span><h2>A city of light, a shrine beyond time.</h2><p>One of the twelve revered Jyotirlingas, Kashi Vishwanath stands at the spiritual heart of Varanasi. This guide brings together respectful cultural context with practical, verified information.</p></section><div class="detail-grid"><article><span>◷</span><div><small>OPEN TODAY</small><b>3:00 AM – 11:00 PM</b><p>Mangala Aarti: 3:00 AM</p></div></article><article><span>♟</span><div><small>DRESS CODE</small><b>Modest traditional wear</b><p>Footwear deposit available</p></div></article><article><span>♿</span><div><small>ACCESSIBILITY</small><b>Assisted access</b><p>Wheelchairs at Gate 4</p></div></article><article><span>₹</span><div><small>ENTRY</small><b>Free darshan</b><p>Optional sugam passes</p></div></article></div><section class="facilities"><h2>Facilities</h2><div><span>✓ Drinking water</span><span>✓ Lockers</span><span>✓ Medical desk</span><span>✓ Wheelchairs</span><span>✓ Prasad counter</span><span>✓ Cloakroom</span></div></section></div><aside class="live-card"><div class="live-card-head"><span class="pulse"></span><div><small>LIVE NOW</small><b>Temple conditions</b></div></div><div class="metric"><span>Crowd level</span><b class="amber">Moderate</b></div><div class="crowd-meter"><i></i></div><div class="metric"><span>Estimated queue</span><b>28 minutes</b></div><div class="metric"><span>Weather</span><b>29°C · Clear</b></div><div class="metric"><span>Last verified</span><b>2 min ago</b></div><button class="primary-btn full" data-route="darshan">Watch live darshan</button><button class="outline-btn full">Book puja or aarti</button></aside></div>
+      <div class="temple-hero"><div><span class="verified">✓ OFFICIALLY VERIFIED</span><h1>Shri Kashi Vishwanath</h1><p>Varanasi, Uttar Pradesh · Jyotirlinga</p><div class="temple-actions"><button class="primary-btn" data-route="planner">Plan this journey</button><button class="glass-btn" id="saveTemple">♡ Save</button></div></div></div>
+      <div class="temple-layout"><div><div class="info-tabs"><button class="active" data-temple-tab="overview">Overview</button><button data-temple-tab="timings">Timings</button><button data-temple-tab="facilities">Facilities</button><button data-temple-tab="rules">Rules</button><button data-temple-tab="reviews">Reviews</button></div><section class="temple-copy" id="templeTabContent"><span class="kicker">ABOUT THE TEMPLE</span><h2>A city of light, a shrine beyond time.</h2><p>One of the twelve revered Jyotirlingas, Kashi Vishwanath stands at the spiritual heart of Varanasi. This guide brings together respectful cultural context with practical, verified information.</p></section><div class="detail-grid"><article><span>◷</span><div><small>OPEN TODAY</small><b>3:00 AM – 11:00 PM</b><p>Mangala Aarti: 3:00 AM</p></div></article><article><span>♟</span><div><small>DRESS CODE</small><b>Modest traditional wear</b><p>Footwear deposit available</p></div></article><article><span>♿</span><div><small>ACCESSIBILITY</small><b>Assisted access</b><p>Wheelchairs at Gate 4</p></div></article><article><span>₹</span><div><small>ENTRY</small><b>Free darshan</b><p>Optional sugam passes</p></div></article></div><section class="facilities"><h2>Facilities</h2><div><span>✓ Drinking water</span><span>✓ Lockers</span><span>✓ Medical desk</span><span>✓ Wheelchairs</span><span>✓ Prasad counter</span><span>✓ Cloakroom</span></div></section></div><aside class="live-card"><div class="live-card-head"><span class="pulse"></span><div><small>LIVE NOW</small><b>Temple conditions</b></div></div><div class="metric"><span>Crowd level</span><b class="amber">Moderate</b></div><div class="crowd-meter"><i></i></div><div class="metric"><span>Estimated queue</span><b>28 minutes</b></div><div class="metric"><span>Weather</span><b>29°C · Clear</b></div><div class="metric"><span>Last verified</span><b>2 min ago</b></div><button class="primary-btn full" data-route="darshan">Watch live darshan</button><button class="outline-btn full" data-service="Puja booking">Book puja or aarti</button></aside></div>
     </section>
 
     <section class="page inner-page shell" id="planner">
@@ -179,37 +179,46 @@
     <section class="page inner-page shell" id="darshan">
       <div class="page-head row"><div><span class="kicker">LIVE DARSHAN</span><h1>Devotion, wherever you are.</h1><p>Join verified live streams from temple trusts across India.</p></div><span class="live-badge">● 8 temples live</span></div>
       <div class="darshan-grid">
-        <article class="featured-live"><div class="live-visual"><span>● LIVE</span><button aria-label="Play live darshan">▶</button></div><div><h2>Shri Kashi Vishwanath</h2><p>Varanasi, Uttar Pradesh · Morning Aarti</p><footer><span>12.4K watching</span><button class="primary-btn">Watch darshan</button></footer></div></article>
-        <aside><h3>Live now</h3><button><span class="mini-live kedarnath">●</span><div><b>Kedarnath Dham</b><small>Evening Aarti · 8.1K watching</small></div></button><button><span class="mini-live ujjain">●</span><div><b>Mahakaleshwar</b><small>Shayana Aarti · 4.7K watching</small></div></button><button><span class="mini-live puri">●</span><div><b>Jagannath Temple</b><small>Daily Darshan · 6.2K watching</small></div></button></aside>
+        <article class="featured-live"><div class="live-visual"><span>● LIVE</span><button data-stream="Shri Kashi Vishwanath" aria-label="Play live darshan">▶</button></div><div><h2>Shri Kashi Vishwanath</h2><p>Varanasi, Uttar Pradesh · Morning Aarti</p><footer><span>12.4K watching</span><button class="primary-btn" data-stream="Shri Kashi Vishwanath">Watch darshan</button></footer></div></article>
+        <aside><h3>Live now</h3><button data-stream="Kedarnath Dham"><span class="mini-live kedarnath">●</span><div><b>Kedarnath Dham</b><small>Evening Aarti · 8.1K watching</small></div></button><button data-stream="Mahakaleshwar"><span class="mini-live ujjain">●</span><div><b>Mahakaleshwar</b><small>Shayana Aarti · 4.7K watching</small></div></button><button data-stream="Jagannath Temple"><span class="mini-live puri">●</span><div><b>Jagannath Temple</b><small>Daily Darshan · 6.2K watching</small></div></button></aside>
       </div>
     </section>
 
     <section class="page inner-page shell" id="stays">
       <div class="page-head"><span class="kicker">STAY NEAR THE SACRED</span><h1>Rest easy. Wake up closer.</h1><p>Verified hotels and dharamshalas selected for pilgrims and families.</p></div>
-      <div class="booking-bar"><label>Destination<input value="Varanasi"></label><label>Check in<input type="date"></label><label>Guests<select><option>2 guests</option><option>4 guests</option></select></label><button class="primary-btn">Find stays</button></div>
+      <div class="booking-bar"><label>Destination<input id="stayDestination" value="Varanasi"></label><label>Check in<input type="date" id="stayDate"></label><label>Guests<select id="stayGuests"><option>2 guests</option><option>4 guests</option></select></label><button class="primary-btn" id="findStays">Find stays</button></div>
       <div class="stay-grid">
-        <article><div class="stay-art stay1"><span>VERIFIED</span></div><div><small>1.2 km from temple</small><h3>Ganga View Residency</h3><p>4.8 ★ · Family rooms · Lift access</p><footer><b>₹2,450 <small>/ night</small></b><button>View stay</button></footer></div></article>
-        <article><div class="stay-art stay2"><span>TRUST STAY</span></div><div><small>500 m from temple</small><h3>Shri Kashi Dharamshala</h3><p>4.6 ★ · Satvik meals · Wheelchair access</p><footer><b>₹850 <small>/ night</small></b><button>View stay</button></footer></div></article>
-        <article><div class="stay-art stay3"><span>POPULAR</span></div><div><small>2 km from temple</small><h3>Heritage Ghat House</h3><p>4.9 ★ · River view · Airport pickup</p><footer><b>₹3,800 <small>/ night</small></b><button>View stay</button></footer></div></article>
+        <article><div class="stay-art stay1"><span>VERIFIED</span></div><div><small>1.2 km from temple</small><h3>Ganga View Residency</h3><p>4.8 ★ · Family rooms · Lift access</p><footer><b>₹2,450 <small>/ night</small></b><button data-stay="Ganga View Residency">View stay</button></footer></div></article>
+        <article><div class="stay-art stay2"><span>TRUST STAY</span></div><div><small>500 m from temple</small><h3>Shri Kashi Dharamshala</h3><p>4.6 ★ · Satvik meals · Wheelchair access</p><footer><b>₹850 <small>/ night</small></b><button data-stay="Shri Kashi Dharamshala">View stay</button></footer></div></article>
+        <article><div class="stay-art stay3"><span>POPULAR</span></div><div><small>2 km from temple</small><h3>Heritage Ghat House</h3><p>4.9 ★ · River view · Airport pickup</p><footer><b>₹3,800 <small>/ night</small></b><button data-stay="Heritage Ghat House">View stay</button></footer></div></article>
       </div>
     </section>
 
     <section class="page inner-page shell" id="journeys"><div class="empty-state"><span>ॐ</span><h1>Your sacred journeys</h1><p>Plans, bookings and saved places come together here.</p><button class="primary-btn" data-route="planner">Plan your first yatra →</button></div></section>
-    <section class="page inner-page shell" id="profile"><div class="profile-card"><div class="profile-avatar">AS</div><h1>Namaste, Arjun</h1><p>Member since 2026 · Bengaluru</p><div class="profile-stats"><div><b>3</b><small>Journeys</small></div><div><b>7</b><small>Saved places</small></div><div><b>2</b><small>Family members</small></div></div><div class="accessibility-settings"><h3>Accessibility</h3><label><span>Large text<small>Increase text across the app</small></span><input type="checkbox" id="largeText"></label><label><span>High contrast<small>Stronger borders and colour contrast</small></span><input type="checkbox" id="highContrast"></label><label><span>Follow device theme<small>Automatically match your system</small></span><input type="checkbox" id="autoTheme"></label></div><button class="outline-btn">Manage profile</button></div></section>
+    <section class="page inner-page shell" id="profile"><div class="profile-card"><div class="profile-avatar">AS</div><h1>Namaste, Arjun</h1><p>Member since 2026 · Bengaluru</p><div class="profile-stats"><div><b>3</b><small>Journeys</small></div><div><b>7</b><small>Saved places</small></div><div><b>2</b><small>Family members</small></div></div><div class="accessibility-settings"><h3>Accessibility</h3><label><span>Large text<small>Increase text across the app</small></span><input type="checkbox" id="largeText"></label><label><span>High contrast<small>Stronger borders and colour contrast</small></span><input type="checkbox" id="highContrast"></label><label><span>Follow device theme<small>Automatically match your system</small></span><input type="checkbox" id="autoTheme"></label></div><button class="outline-btn" id="manageProfile">Manage profile</button></div></section>
     <section class="page inner-page shell" id="safety"><div class="page-head"><span class="kicker">NAMO CARE</span><h1>Support that travels with you.</h1></div><div class="safety-features"><article><span>⌖</span><h3>Family tracking</h3><p>Share live location privately with people you trust.</p></article><article><span>✚</span><h3>Emergency help</h3><p>Reach local assistance and emergency services quickly.</p></article><article><span>✓</span><h3>Verified partners</h3><p>Every listed guide, stay and service is identity checked.</p></article></div><button class="sos-btn" id="sosBtn">SOS · Get help now</button></section>
     <section class="page presentation-page" id="presentation">
       <div class="deck-hero">
         <div class="shell">
-          <span class="kicker light">NAMO SETU · PRODUCT & TECHNOLOGY PRESENTATION</span>
-          <h1>One trusted bridge for every sacred journey.</h1>
-          <p>From a pilgrim’s first search to a verified plan, booking, darshan, donation, family safety and partner fulfillment—this page explains what was built, how it works and where it goes next.</p>
+          <span class="kicker light">PRODUCT CASE STUDY · JULY 2026</span>
+          <h1>NAMO SETU: designing the operating layer for pilgrimage travel.</h1>
+          <p>This is the working case study behind the product: the problem we chose, what is implemented in this repository, which production systems are specified, and what still depends on verified partners and live integrations.</p>
           <div class="deck-actions"><a class="cream-btn" href="https://github.com/Ankushkumar2811/namo-setu/tree/main/docs" target="_blank" rel="noreferrer">Open complete documentation ↗</a><button class="outline-light" data-route="admin">View admin OS</button></div>
         </div>
       </div>
       <div class="shell deck-body">
-        <section class="deck-section">
-          <span class="kicker">THE PROBLEM</span><h2>A pilgrimage is not a normal holiday.</h2>
+        <section class="deck-section deck-intro">
+          <div><span class="kicker">THE WORKING BRIEF</span><h2>A pilgrimage is not a normal holiday.</h2><p class="deck-lead">The organizer is usually coordinating faith, family, mobility, time and money at once. The product had to treat these constraints as one journey instead of a collection of unrelated listings.</p></div>
+          <aside><b>Design question</b><p>How might one verified system take a family from intent to fulfillment without letting AI become the source of truth for availability, money or safety?</p></aside>
           <div class="deck-grid three"><article><b>Fragmented planning</b><p>Temple timings, stays, transport, rituals and local advice live across unrelated sources.</p></article><article><b>Weak trust</b><p>Availability, partner identity, payments and donation evidence are difficult to verify.</p></article><article><b>Family complexity</b><p>Elders, children, accessibility, crowds, language and emergencies must be coordinated together.</p></article></div>
+        </section>
+        <section class="deck-section">
+          <span class="kicker">DELIVERY STATUS</span><h2>What is real today—and what is deliberately not claimed.</h2>
+          <div class="truth-table">
+            <div><span class="truth-tag built">IMPLEMENTED</span><b>Responsive product experience</b><p>Discovery, planner prototype, temple details, stays, darshan, profile, safety, presentation and interactive admin modules.</p></div>
+            <div><span class="truth-tag specified">SPECIFIED & TESTED</span><b>Production architecture</b><p>FastAPI foundation, domain/API/database contracts, seed data, tests, CI, containers, security scans, events and runbooks.</p></div>
+            <div><span class="truth-tag dependency">PARTNER DEPENDENT</span><b>Live transactions and operations</b><p>Real inventory, payment settlement, temple streams, emergency-provider routing and government connections require contracts, credentials and launch approval.</p></div>
+          </div>
         </section>
         <section class="deck-section solution-band">
           <span class="kicker light">THE SOLUTION</span><h2>NAMO SETU turns intent into a safe, executable journey.</h2>
@@ -218,7 +227,7 @@
           </div>
         </section>
         <section class="deck-section">
-          <span class="kicker">PROJECT EVOLUTION</span><h2>What happened from Part 1 to Part 10</h2>
+          <span class="kicker">DELIVERY LOG</span><h2>How the system was shaped, step by step.</h2>
           <div class="project-timeline">
             <article><i>1</i><div><b>Product foundation</b><p>Vision, users, feature scope, business rules and acceptance criteria.</p></div></article>
             <article><i>2</i><div><b>UI/UX system</b><p>Accessible design language, responsive journeys and interaction patterns.</p></div></article>
@@ -233,16 +242,25 @@
           </div>
         </section>
         <section class="deck-section architecture-deck">
-          <div><span class="kicker light">SYSTEM FLOW</span><h2>How one request moves through the platform</h2><p>The edge authenticates and protects the request. Domain services enforce rules. PostgreSQL commits authoritative state with an outbox event. Workers update projections and call approved providers.</p></div>
+          <div><span class="kicker light">ENGINEERING DECISION</span><h2>Keep the transaction core boring.</h2><p>The edge authenticates and protects the request. Domain services enforce rules. PostgreSQL commits authoritative state with an outbox event. Workers update projections and call approved providers. We chose a modular monolith first because bookings and ledgers benefit more from simple transactions than premature service boundaries.</p></div>
           <div class="system-flow"><b>User & partner channels</b><span>↓</span><b>CDN · WAF · API gateway</b><span>↓</span><b>Identity · Catalogue · Commerce · Experience</b><span>↓</span><b>PostgreSQL + transactional outbox</b><span>↓</span><b>Queues · AI · notifications · providers</b></div>
         </section>
         <section class="deck-section">
-          <span class="kicker">CRITICAL FLOWS</span><h2>Deterministic where trust matters. Intelligent where guidance helps.</h2>
+          <span class="kicker">FOUR FLOWS THAT DEFINE THE PRODUCT</span><h2>AI helps with judgment. Code owns the commitments.</h2>
           <div class="deck-grid">
             <article><b>Booking & payment</b><p>Search → availability lock → immutable quote → hosted payment → signed webhook → atomic booking and ledger → QR, invoice and notification.</p></article>
             <article><b>AI yatra planner</b><p>Intent → verified retrieval → temple, stay, transport, budget, weather and crowd agents → grounded itinerary → explicit user action.</p></article>
             <article><b>Donation</b><p>Approved temple and purpose → donor/tax choice → gateway verification → double-entry ledger → immutable receipt and reporting.</p></article>
             <article><b>Emergency SOS</b><p>Immediate official call guidance → consented GPS → hospital/responders/family → acknowledgements → visible tracking → human closure.</p></article>
+          </div>
+        </section>
+        <section class="deck-section decision-section">
+          <span class="kicker">DECISIONS & TRADE-OFFS</span><h2>The choices we would defend in a technical review.</h2>
+          <div class="decision-list">
+            <article><b>PostgreSQL over a document-first core</b><p>Bookings, inventory, refunds and ledgers need constraints and atomic transitions. Flexible catalogue attributes can still use JSON where justified.</p></article>
+            <article><b>Signed webhooks over browser success screens</b><p>A redirect is user experience, not financial evidence. Confirmation happens once against an authenticated provider event.</p></article>
+            <article><b>RAG over model memory for temple facts</b><p>Timings, closures and policies change. Answers need authority, effective dates and the option to say there is not enough verified information.</p></article>
+            <article><b>Human confirmation at every consequential boundary</b><p>The planner can recommend and draft. It cannot move money, confirm inventory or close an emergency incident.</p></article>
           </div>
         </section>
         <section class="deck-section">
@@ -270,8 +288,8 @@
       </aside>
       <div class="admin-main">
         <div id="adminOverview">
-        <header class="admin-header"><div><small>MONDAY, 27 JULY</small><h1>Good morning, Ankush.</h1><p>Here’s what’s happening across NAMO SETU today.</p></div><div><button class="admin-icon">⌕</button><button class="admin-icon">♢<i></i></button><button class="admin-primary">＋ Quick action</button></div></header>
-        <div class="admin-alert"><span>⚠</span><div><b>3 operational alerts need attention</b><small>High crowd at Kashi Vishwanath · 2 delayed partner settlements</small></div><button>Review alerts →</button></div>
+        <header class="admin-header"><div><small>MONDAY, 27 JULY</small><h1>Good morning, Ankush.</h1><p>Here’s what’s happening across NAMO SETU today.</p></div><div><button class="admin-icon" data-admin-action="search" aria-label="Search admin">⌕</button><button class="admin-icon" data-admin-action="notifications" aria-label="Open notifications">♢<i></i></button><button class="admin-primary" data-admin-action="quick">＋ Quick action</button></div></header>
+        <div class="admin-alert"><span>⚠</span><div><b>3 operational alerts need attention</b><small>High crowd at Kashi Vishwanath · 2 delayed partner settlements</small></div><button data-admin-view="operations">Review alerts →</button></div>
         <section class="kpi-grid">
           <article><div><span class="kpi-icon users">♙</span><small>TOTAL USERS</small></div><b>2,48,691</b><p><i>↑ 12.4%</i> vs last month</p></article>
           <article><div><span class="kpi-icon bookings">▣</span><small>BOOKINGS TODAY</small></div><b>1,284</b><p><i>↑ 8.1%</i> vs yesterday</p></article>
@@ -283,7 +301,7 @@
           <article class="health-card"><header><small>PLATFORM HEALTH</small><h2>Live services</h2></header><div class="health-score"><strong>99.98%</strong><span>All systems operational</span></div><ul><li><span>API & bookings</span><b>Operational</b></li><li><span>Payments</span><b>Operational</b></li><li><span>AI agents</span><b>10 / 10 online</b></li><li><span>Live darshan</span><em>1 degraded</em></li></ul></article>
         </section>
         <section class="operations-card">
-          <header><div><small>LIVE OPERATIONS</small><h2>Recent bookings</h2></div><div><input id="adminSearch" placeholder="Search reference or customer"><button id="exportCsv">Export CSV</button><button>View all →</button></div></header>
+          <header><div><small>LIVE OPERATIONS</small><h2>Recent bookings</h2></div><div><input id="adminSearch" placeholder="Search reference or customer"><button id="exportCsv">Export CSV</button><button data-admin-view="bookings">View all →</button></div></header>
           <div class="admin-table-wrap"><table id="bookingTable"><thead><tr><th>REFERENCE</th><th>CUSTOMER</th><th>PRODUCT</th><th>PARTNER</th><th>AMOUNT</th><th>STATUS</th></tr></thead><tbody><tr><td><b>NS8F42A1</b><small>2 min ago</small></td><td>Meera Sharma</td><td>Kashi Puja</td><td>Shri Kashi Trust</td><td>₹1,100</td><td><span class="status confirmed">Confirmed</span></td></tr><tr><td><b>NS6D19C4</b><small>8 min ago</small></td><td>Rajesh Patel</td><td>Dharamshala</td><td>Ganga Seva Sadan</td><td>₹2,400</td><td><span class="status pending">Pending</span></td></tr><tr><td><b>NS2B73E8</b><small>14 min ago</small></td><td>Anita Iyer</td><td>Local Guide</td><td>Vikas Mishra</td><td>₹1,800</td><td><span class="status confirmed">Confirmed</span></td></tr><tr><td><b>NS9A15F2</b><small>21 min ago</small></td><td>Gurpreet Singh</td><td>Hotel Stay</td><td>Heritage Ghat House</td><td>₹7,600</td><td><span class="status refund">Refund review</span></td></tr></tbody></table></div>
         </section>
         <section class="admin-bottom"><article><header><small>PARTNER NETWORK</small><h2>Verification queue</h2></header><div class="queue-item"><span class="partner-avatar">⌂</span><div><b>Shiv Shakti Residency</b><small>Hotel · Varanasi</small></div><strong>Documents ready</strong><button data-admin-view="partners">Review</button></div><div class="queue-item"><span class="partner-avatar">♙</span><div><b>Ravi Heritage Walks</b><small>Guide · Ujjain</small></div><strong>Identity check</strong><button data-admin-view="partners">Review</button></div></article><article><header><small>AI CONTROL ROOM</small><h2>Today’s intelligence</h2></header><div class="ai-admin-stat"><span>✦</span><div><b>18,492</b><small>conversations · ₹8,420 estimated cost</small></div></div><div class="mini-stats"><div><b>1.8s</b><small>Avg response</small></div><div><b>4.7/5</b><small>User rating</small></div><div><b>0.04%</b><small>Safety flags</small></div></div></article></section>
@@ -294,7 +312,7 @@
   </main>
 
   <footer>
-    <div class="shell footer-grid"><div class="brand footer-brand"><span class="brand-mark">न</span><span><b>NAMO SETU</b><small>Sacred journeys, simply made</small></span></div><div><b>Explore</b><a href="#" data-route="discover">Temples</a><a href="#" data-route="stays">Stays</a><a href="#" data-route="darshan">Live Darshan</a></div><div><b>Support</b><a href="#">Help centre</a><a href="#" data-route="safety">Safety</a><a href="#">Accessibility</a></div><div><b>For partners</b><a href="#">List your property</a><a href="#">Temple portal</a><a href="#">Guide portal</a></div></div>
+    <div class="shell footer-grid"><div class="brand footer-brand"><span class="brand-mark">न</span><span><b>NAMO SETU</b><small>Sacred journeys, simply made</small></span></div><div><b>Explore</b><a href="#" data-route="discover">Temples</a><a href="#" data-route="stays">Stays</a><a href="#" data-route="darshan">Live Darshan</a></div><div><b>Support</b><a href="#" data-help="Help centre">Help centre</a><a href="#" data-route="safety">Safety</a><a href="#" data-route="profile">Accessibility</a></div><div><b>For partners</b><a href="#" data-partner="Property">List your property</a><a href="#" data-route="admin">Temple portal</a><a href="#" data-route="admin">Guide portal</a></div></div>
     <div class="shell footer-bottom"><span>© 2026 NAMO SETU. Made with devotion in India.</span><span>Privacy · Terms · हिंदी</span></div>
   </footer>
 
