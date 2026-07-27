@@ -1,0 +1,32 @@
+services:
+  api:
+    build: ./backend
+    env_file: ./backend/.env
+    ports: ["8000:8000"]
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: namo_setu
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d namo_setu"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  redis:
+    image: redis:8-alpine
+    command: redis-server --appendonly yes
+    volumes: [redis_data:/data]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  postgres_data:
+  redis_data:
